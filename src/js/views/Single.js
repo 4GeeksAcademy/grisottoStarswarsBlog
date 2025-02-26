@@ -1,37 +1,46 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext.js";
-import CardCarousel from "../component/CardCarousel.jsx";
+import Details from "../component/Details.jsx";
 
-const Databank = () => {
+const Single = () => {
     const {store, actions} = useContext(Context);
 
-    useEffect(() => {
-        actions.getAllPeople();
-        // actions.getPeople();
-        const timer = setTimeout(() => {
-            actions.fetchAllCharacterDetails();
-        
+            useEffect(() => {
+                actions.getAllPeople();
+                
+                
+                // actions.getPerson(uid);
+                const timer = setTimeout(() => {
+                    actions.fetchAllCharacterDetails();
+                    
 
-        }, 1000);
+                    
 
-        return () => clearTimeout(timer);
+                
 
-    }, []);
+                }, 1000);
 
-    return (
-        <div className="container-fluid bg-dark text-light py-4 min-vh-100">
-            <h2 className="text-center my-4">Star Wars Characters</h2>
-            <CardCarousel 
-                allPeople={store.allPeople} 
-                characterDetails={store.characterDetails}
-            
-            /> 
-        </div>
+                return () => clearTimeout(timer);
+
+            }, []);
+
+            return (
+                <div className="container">
+                    <h2 className="text-center my-4"></h2>
+                    <Details 
+                        allPeople={store.allPeople} 
+                        characterDetails={store.characterDetails}   
+                                  
+                        
+                    
+                    /> 
+                    
+                </div>
         
     );
 };
 
-export default Databank;
+export default Single;
 
             //  {/* <div className="col">
             //      <div className="card h-100">

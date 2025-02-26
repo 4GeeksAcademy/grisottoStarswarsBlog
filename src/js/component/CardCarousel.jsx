@@ -3,60 +3,61 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 
- const CardCarousel = ({ name, people }) => {
+ const CardCarousel = ({ allPeople, characterDetails }) => {
         return (
-            <div className="container mt-4">
+            <div className="container-fluid bg-dark text-light py-4 min-vh-100">
                 <div className="row">
-                    {/* ✅ First Loop: People */}
-                    {people.length > 0 ? (
-                        people.map(person => (
-                            <div key={person.uid} className="col-md-4 mb-4">
-                                <div className="card">
-                                    <div className="card-body text-center">
-                                        <h5 className="card-title">{person.name}</h5>
-                                        <div className="col-12">
-                                            <p><strong>Eye Color:</strong> {person.eye_color}</p>
-                                            <p><strong>Hair Color:</strong> {person.hair_color}</p>
-                                            <p><strong>Gender:</strong> {person.gender}</p>
-                                        </div>
-                                        <a href={person.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                                            Learn More
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
+                    <div className="col-md-12">
+                        <div className="d-flex overflow-auto">
+                                      
+                
+                  
+                    
+                    
+                    {allPeople?.length > 0 ? (
+                        allPeople.slice(0, 10).map((person, index) => {
+                            const details = characterDetails.find(
+                                detail => detail.name === person.name
+                                
+                            );
+
+                            return (                         
+                                                
+                                <div key={person.uid} className="card bg-secondary text-light mx-2">
+                                    <div className="card bg-secondary text-light">
+                                                        <img
+                                                                    className="card-img-top"
+                                                                    src="https://picsum.photos/170/170/"
+                                                                    alt="Contact"
+                                                            />
+                                                            <div className="card-body text-center">
+                                                                <h5 className="card-title">{person.name}</h5>
+                                                                {details && (
+                                                                    <div className="col-12">                                                                        
+                                                                        <p><strong>Eye Color:</strong> {details.eye_color}</p>
+                                                                        <p><strong>Hair Color:</strong> {details.hair_color}</p>
+                                                                        <p><strong>Gender:</strong> {details.gender}</p>
+                                                                    </div>                                                     
+                                                            
+                                                            )}
+                                                                <Link to={`/single/${person.uid}`} className="btn btn-sm btn-outline-light"> {person.name} </Link>
+                                                            </div>
+                                                </div>
+                                        </div>                                  
+                        );
+                      })
                     ) : (
-                        <div className="text-center">
-                            <p>Loading characters...</p>
-                        </div>
-                    )}
-    
-                    {/* ✅ Second Loop: Name */}
-                    {name?.length > 0 ? (
-                        name.map(item => (
-                            <div key={item.uid} className="col-md-4 mb-4">
-                                <div className="card">
-                                    <div className="card-body text-center">
-                                        <h5 className="card-title">{item.name}</h5>
-                                        <div className="col-12">
-                                            {/* You can add additional details here if needed */}
-                                        </div>
-                                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                                            Learn More
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        <div className="text-center">
+                        <div className="text-center w-100">
                             <p>Loading characters...</p>
                         </div>
                     )}
                 </div>
-            </div>
-        );
-    };
+            </div>   
+                   
+        </div>
+    </div>            
+          
+    );
+};
     
     export default CardCarousel;

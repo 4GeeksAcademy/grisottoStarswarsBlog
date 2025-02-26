@@ -5,9 +5,8 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Demo } from "./views/demo";
 import  Databank  from "./views/Databank.jsx";
-import { Single } from "./views/single";
+import Single  from "./views/Single.js";
 import injectContext from "./store/appContext";
-
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -26,7 +25,7 @@ const Layout = () => {
 					<Routes>
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/" element={<Databank />} />
-						<Route path="/single/:theid" element={<Single />} />
+						<Route path="/single/:uid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
