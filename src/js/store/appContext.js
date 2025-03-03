@@ -23,10 +23,11 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 			// state.actions.getAllResources()
-			state.actions.getAllPeople()
-			// state.actions.getPeople()			
-			// state.actions.getAllPlanets()
-			// state.actions.getAllStarships()
+			//state.actions.getAllPeople()
+			state.actions.getPlanets();
+			state.actions.getPeople();			
+			//state.actions.getAllPlanets()
+			state.actions.getStarships();
 			/**
 			 * EDIT THIS!
 			 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime

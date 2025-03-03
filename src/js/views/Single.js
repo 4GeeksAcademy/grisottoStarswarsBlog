@@ -1,89 +1,90 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext.js";
-import Details from "../component/Details.jsx";
+import Card from "../component/Card.jsx";
 
 const Single = () => {
-    const {store, actions} = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-            useEffect(() => {
-                actions.getAllPeople();
-                
-                
-                // actions.getPerson(uid);
-                const timer = setTimeout(() => {
-                    actions.fetchAllCharacterDetails();
-                    
+  const [loading, setLoading] = useState(true);
 
-                    
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      await Promise.all([
+        actions.getPeople(),
+        actions.getPlanets(),
+        actions.getStarships(),
+      ]);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
-                
+  return loading ? (
+    <h2>Loading...</h2>
+  ) : (
+    <div className="container-fluid bg-dark text-light py-4">
+                    <div className="row">
+                      <div className="md-12">
+                        <h2 className="text-center my-4">Star Wars Characters</h2>
+                        <div className="container-fluid d-flex overflow-auto p-2">
+                          {store.allPeople?.length > 0
+                            ? store.allPeople.map((people, index) => {
+                                return (
+                                  <Card
+                                    item={people}
+                                    index={index}
+                                    key={index}
+                                    category="characters"
+                                  />
+                                );
+                              })
+                            : null}
+                        </div>
+                      </div>
+                    </div>
 
-                }, 1000);
+                    <div className="row">
+                      <div className="container-fluid">
+                        <h2 className="text-center my-4">Star Wars Planets</h2>
+                        <div className="d-flex overflow-auto">
+                          {store.allPlanets?.length > 0
+                            ? store.allPlanets.map((planet, index) => {
+                                return (
+                                  <Card
+                                    item={planet}
+                                    index={index}
+                                    key={index}
+                                    category="planets"
+                                  />
+                                );
+                              })
+                            : null}
+                        </div>
+                      </div>
+                    </div>
 
-                return () => clearTimeout(timer);
-
-            }, []);
-
-            return (
-                <div className="container">
-                    <h2 className="text-center my-4"></h2>
-                    <Details 
-                        allPeople={store.allPeople} 
-                        characterDetails={store.characterDetails}   
-                                  
-                        
-                    
-                    /> 
-                    
-                </div>
-        
-    );
+                    <div className="row">
+                      <div className="container-xl">
+                        <h2 className="text-center my-4">Star Wars Starships</h2>
+                        <div className="d-flex overflow-auto">
+                          {store.allStarships?.length > 0
+                            ? store.allStarships.map((starship, index) => {
+                                return (
+                                  <Card
+                                    item={starship}
+                                    index={index}
+                                    key={index}
+                                    category="starships"
+                                  />
+                                );
+                              })
+                            : null}
+                        </div>
+                      </div>
+                    </div>
+    </div>
+  );
 };
 
-export default Single;
-
-            //  {/* <div className="col">
-            //      <div className="card h-100">
-            //       <img
-            //                 className="rounded-circle"
-            //                 src="https://picsum.photos/170/170/"
-            //                 alt="Contact"
-            //         />
-            //     <div className="card-body">
-            //         <h5 className="card-title">Card title</h5>
-            //         <p className="card-text">This is a short card.</p>
-            //     </div>
-            //     </div>
-            // </div>
-            // <div className="col">
-            //     <div className="card h-100">
-            //         <img
-            //                 className="rounded-circle"
-            //                 src="https://picsum.photos/170/170/"
-            //                 alt="Contact"
-            //         />
-            //     <div className="card-body">
-            //         <h5 className="card-title">Card title</h5>
-            //         <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            //     </div>
-            //     </div>
-            // </div>
-            // <div className="col">
-            //     <div className="card h-100">
-            //         <img
-            //                 className="rounded-circle"
-            //                 src="https://picsum.photos/170/170/"
-            //                 alt="Contact"
-
-            //         />
-            //     <div className="card-body">
-            //         <h5 className="card-title">Card title</h5>
-            //         <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            //     </div>
-            //     </div>
-            // </div> */}
-            
-//     );
-// };
-
-// export default Databank;
+export default Databank;
