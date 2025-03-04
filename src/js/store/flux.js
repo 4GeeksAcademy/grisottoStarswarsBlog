@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             Databank: [],
+			favorites: [],
                       
             
             allPeople: [],
@@ -121,6 +122,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
             
+			addFavorites: (fav) => {
+				setStore({
+					favorites: [...getStore().favorites, fav],
+					
+				})
+			},
+
+			deleteFavorites: (indexToDelete) => {
+				const newFavorites = getStore().favorites.filter((fav, index) => index !== indexToDelete);
+				setStore({favorites: newFavorites})
+
+			}
+
             
           
 

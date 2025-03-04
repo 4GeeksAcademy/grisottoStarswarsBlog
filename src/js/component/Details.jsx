@@ -27,7 +27,7 @@ const Details = ({ category }) => {
   };
 
   return (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center bg-dark">
       <div
         className="card bg-dark text-light border-0"
         style={{ minWidth: "75%", maxWidth: "75%" }}
@@ -36,12 +36,10 @@ const Details = ({ category }) => {
           <div className="col-md-4 d-flex align-items-center justify-content-center p-3">
             <img className="img-fluid rounded" src={getImgUrl()} />
           </div>
-          {/* planet.name */}
+          
           <div className="col-md-8 p-4">
             <div className="card-body">
-              {/* <div key={index}>
-                <h2>{item.name}</h2>
-              </div> */}
+              
               <h2
                 className="card-title text-center mb-5"
                 style={{ fontSize: "3rem" }}
@@ -151,26 +149,16 @@ const Details = ({ category }) => {
                     : starship.manufacturer}
                 </p>
               </div>
+            <div className="d-flex justify-content-center" >
+              
 
-              {/* Additional Character Details Section */}
-              {/* <div className="card-body"> */}
-              {/* <div className="row">
-                <div className="col-md-3">
-                    <h6 className="text-danger">HOMEWORLD</h6>
-                    <p><a href={character.homeworld} className="text-light">View Planet</a></p>
-                </div>
-                <div className="col-md-3">
-                    <h6 className="text-danger">MASS</h6>
-                    <p>{character.mass} kg</p>
-                </div>
-                <div className="col-md-3">
-                    <h6 className="text-danger">API LINK</h6>
-                    <p><a href={character.url} className="text-light">API Resource</a></p>
-                </div> */}
+
+
             </div>
           </div>
         </div>
       </div>
+      </div>                
     </div>
   );
 };

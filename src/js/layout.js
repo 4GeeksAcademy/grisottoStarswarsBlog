@@ -24,9 +24,7 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Routes>
-						{/* <Route path="/demo" element={<Demo />} /> */}
 						<Route path="/" element={<Databank />} />
-						{/* <Route path="/single/:uid" element={<Single />} /> */}
 						<Route path="/details/planets/:id" element={<Details category = "planets" />} />
 						<Route path="/details/characters/:id" element={<Details category = "characters" />} />
 						<Route path="/details/starships/:id" element={<Details category = "starships" />} />						
