@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 
 // import { Demo } from "./views/demo";
-import  Databank  from "./views/Databank.jsx";
+import Databank from "./views/Databank.jsx";
 // import Single  from "./views/Single.js";
 import injectContext from "./store/appContext";
 
@@ -19,17 +19,19 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div>
+		<div id="page-container">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
-					<Routes>
-						<Route path="/" element={<Databank />} />
-						<Route path="/details/planets/:id" element={<Details category = "planets" />} />
-						<Route path="/details/characters/:id" element={<Details category = "characters" />} />
-						<Route path="/details/starships/:id" element={<Details category = "starships" />} />						
-						<Route path="*" element={<h1>Not found!</h1>} />
-					</Routes>
+					<div id="content-wrap">
+						<Routes>
+							<Route path="/" element={<Databank />} />
+							<Route path="/details/planets/:id" element={<Details category="planets" />} />
+							<Route path="/details/characters/:id" element={<Details category="characters" />} />
+							<Route path="/details/starships/:id" element={<Details category="starships" />} />
+							<Route path="*" element={<h1>Not found!</h1>} />
+						</Routes>
+					</div>
 					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>

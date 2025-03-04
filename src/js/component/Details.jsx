@@ -27,7 +27,7 @@ const Details = ({ category }) => {
   };
 
   return (
-    <div className="d-flex justify-content-center bg-dark">
+    <div className="d-flex justify-content-center bg-dark" style={{minHeight: "100%"}}>
       <div
         className="card bg-dark text-light border-0"
         style={{ minWidth: "75%", maxWidth: "75%" }}
